@@ -13,8 +13,26 @@ class FrontindexController extends AbstractController
      */
     public function index(): Response
     {
+        if ($this->getUser()){
+            $role =$this->getUser()->getRoles()[0];
+        }
+     else{
+         $role="client";
+     }
+
         return $this->render('frontindex/index.html.twig', [
-            'controller_name' => 'FrontindexController',
+            'role' => $role,
         ]);
     }
+    /**
+     * @Route("/getrole", name="getrole")
+     */
+    public function getrole(): Response
+    {
+         $role =$this->getUser()->getRoles()[0];
+        return $this->render('frontindex/index.html.twig', [
+            'role' => $role,
+        ]);
+    }
+
 }

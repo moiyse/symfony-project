@@ -9,14 +9,12 @@
             <div class="row no-gutters slider-text align-items-end justify-content-start">
                 <div class="col-md-12 ftco-animate text-center mb-5 fadeInUp ftco-animated" style="margin-bottom: -172px !important;">
                     <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About</span></p>
-                    <h1 class="mb-3 bread">Browse Jobs</h1>
+                    <h1 class="mb-3 bread">Tous les tests</h1>
                 </div>
                 <div class="ftco-search my-md-5" style="margin: 0 auto;width: 173px;margin-bottom: 29px !important;">
 					<div class="row">
 			            <div class="col-md-12 nav-link-wrap">
-				            <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="margin-top:50px">
-                                <a class="nav-link " id="v-pills-1-tab" href="{{ path('add_test') }}">Créer un test</a>
-                            </div>
+				            
 			            </div>
 	                </div>
 			    </div>
@@ -35,13 +33,19 @@
 {% endfor %}
 
     {% for test in alltests %}
-        <div class="col-lg-9 pr-lg-4">
+    
+    {% set count = 0 %}
+        <div class="col-lg-9 pr-lg-4" style="margin-top:20px;margin-bottom: 18px;max-width:100%">
             <div class="row">
                 <div class="col-md-12 ftco-animate fadeInUp ftco-animated" style="width:10000px">
-                    <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                    <div class="job-post-item p-4 d-block d-lg-flex align-items-center" style="border: 1px solid rgba(114, 126, 140, 0.20);">
                         <div class="one-third mb-4 mb-md-0">
                             <div class="job-post-item-header align-items-center">
-                                <span class="subadge">{{test.id}}</span>
+                            {% if test.candidature != NULL %}
+                                <div> Test de l'offre avec le titre : {{test.candidature.Offre.titre}}  <br> de le utilisateur avec l'email : {{test.candidature.User.email}} </div>
+                                {% endif %}
+                                <div style="border-bottom:1px solid;margin-bottom:10px">  </div>
+                                
 
                                 <h2 class="mr-3 text-black"><a href="#">Titre: {{test.titre }}</a></h2>
                                 <h2 class="mr-3 text-black"><a href="#">Sujet: {{test.sujet.sujet }}</a></h2>
@@ -52,9 +56,9 @@
                             </div>
                         </div>
 
-                        <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                        <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0" style="width: 436px;">
                         <span>
-                            <a href="{{ path('test_all_question',{'id':test.id}) }}" class="btn btn-primary py-2" style="width:max-content">all questions</a>
+                            <a href="{{ path('test_all_question',{'id':test.id}) }}" class="btn btn-primary py-2" style="width:max-content"> {% for question_count in test.questions %}{% set count = count + 1 %}{% endfor %}all questions{% if count < 10 %}<div style="color:red">({{count}})</div>{% else %}<div style="color:lightgreen">({{count}})</div>{% endif %} </a>
                         </span>
                         <span style="padding-left: 10px">
                             <a href="{{ path('all_question',{'id':test.id}) }}" class="btn btn-primary py-2" style="width:max-content">add question</a>
@@ -72,6 +76,7 @@
                 </div>
             </div>
         </div>
+        
     {% endfor %}
     <div class="navigation">
         <div style="width:100px;margin:100px auto 20px auto;color:black">{{ knp_pagination_render(alltests, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}</div>

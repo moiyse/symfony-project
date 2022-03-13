@@ -8667,7 +8667,7 @@ h1, h2, h3, h4, h5,
   background: #fff;
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
@@ -9952,3 +9952,211 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
+
+
+
+/*  ////////////////////////////////////////////////
+             added   for question page
+    /////////////////////////////////////////////////////
+*/
+
+.questions{
+  background-color:white;
+    width:100%;
+    height:auto;
+    border-top:solid 1px;
+    border-color:rgb(229, 231, 233);
+    position:relative;
+    padding-bottom: 6px;
+}
+
+.in-question-container{
+
+  background-color:rgba(0, 0, 0, 0.02);
+  width:98%;
+  height:auto;
+  margin: 5px auto 0 auto;
+  padding-bottom: 20px;
+  position: relative;
+  
+
+}
+
+
+
+.form-style-textfield{
+  width: 90%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid rgba(197, 214, 226, 1);
+
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-style-typequestion-field{
+  width:100%;
+  border: 2px solid rgba(197, 214, 226, 1);
+  border-radius: 4px;
+  padding: 6px 13px;
+  margin: 8px 0;
+}
+
+.form-style-numberfield{
+
+  width: 20%;
+  padding: 2px 3px 2px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid rgba(197, 214, 226, 1);
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+
+
+.form-style-textfield::placeholder{
+  font-size: 15px;
+  color:#A5A5A5;
+}
+
+
+.form-style-label{
+  font-family :Lucida Console, monospace;
+  font-size: 17px;
+  color:#97AFBE;
+  padding-left: 10px;
+}
+
+
+
+/*  ////////////////////////////////////////////////
+             added for choices page
+    /////////////////////////////////////////////////////
+*/
+
+
+.form-style-textfield-choice{
+  width: 100%;
+  padding: 8px 20px;
+  margin: -8px 0 8px 0;
+  display: inline-block;
+  border: 2px solid rgba(197, 214, 226, 1);
+
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+}
+
+
+
+
+.question_title{
+
+  font-size: 24px;
+  padding:60px 0 0 60px;
+  color:#595959;
+}
+
+
+
+
+
+.form-style-label-choix{
+  font-family :Lucida Console, monospace;
+  font-size: 13px;
+  color:#97AFBE;
+  padding-left: 10px;
+}
+
+
+/*  ////////////////////////////////////////////////
+             added for libraries page
+    /////////////////////////////////////////////////////
+*/
+
+
+
+.in-library-container{
+
+  background-color:rgba(0, 0, 0, 0.02);
+  width:98%;
+  height:auto;
+  margin: 0px auto 5px auto;
+  border: 3px rgba(197, 214, 226, 1);
+  border-style: groove;;
+  position: relative;
+  
+
+}
+
+
+.library{
+  margin: 32px 26px;
+}
+
+.delete_icon{
+  padding-right:15px
+}
+
+
+.titre_library{
+  font-family :Lucida Console, monospace;
+  font-size: 17px;
+  color:#97AFBE;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E8E8E8;
+  margin-left: 23px;
+}
+
+
+.library_contents{
+
+  margin-top:25px;
+
+}
+
+
+
+
+
+/*  ////////////////////////////////////////////////
+             added for questionnaire page
+    /////////////////////////////////////////////////////
+*/
+
+
+.questions_questionnaire{
+  color:black;
+  font-size: 28px;
+}
+
+.choix_questionnaire{
+
+}
+
+
+
+
+
+/*  ////////////////////////////////////////////////
+             added for quiz page
+    /////////////////////////////////////////////////////
+*/
+
+
+
+.choix_quiz{
+  display: grid;
+  padding-left: 28px;
+}
+
+.required{
+  color:grey;
+  text-align:center;
+  margin-bottom: 33px;
+
+}

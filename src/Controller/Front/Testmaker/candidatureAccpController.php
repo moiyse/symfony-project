@@ -13,8 +13,10 @@ class candidatureAccpController extends AbstractController
      */
     public function index(): Response
     {
+        
+        $role =$this->getUser()->getRoles()[0];
         return $this->render('front/testmaker/candidature_accp/index.html.twig', [
-            'controller_name' => 'candidatureAccpController',
+            'controller_name' => 'candidatureAccpController', 'role'=> $role
         ]);
     }
 }

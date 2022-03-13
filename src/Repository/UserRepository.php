@@ -36,22 +36,56 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return User[] Returns an array of User objects
+     */
+
+    public function findEntreprise()
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+                  ->select('count(u.id)')
+                   ->where('u.roles LIKE :roles')
+                    ->setParameter('roles','%' . "ROLE_ENTREPRISE" . '%')
+                    ->getQuery()
+                    ->getSingleScalarResult();
         ;
     }
-    */
+    public function findTesttaker()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles','%' . "ROLE_TESTTAKER" . '%')
+            ->getQuery()
+            ->getSingleScalarResult();
+        ;
+    }
+    public function FindTestmaker()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles','%' . "ROLE_TESTMAKER" . '%')
+            ->getQuery()
+            ->getSingleScalarResult();
+        ;
+    }
+    public function findByNamePopular(string $search = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('user')
+
+            ->where('user.etat LIKE :searchTerm')
+            ->orWhere('user.id LIKE :searchTerm')
+            ->orWhere('user.email LIKE :searchTerm')
+
+            ->setParameter('searchTerm', '%'.$search.'%');
+
+
+        return $queryBuilder
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?User

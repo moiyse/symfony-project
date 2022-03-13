@@ -46,7 +46,29 @@
         gtag('js', new Date());
         gtag('config', 'UA-130795909-1');
     </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
 
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title:{
+                    text: "My First Chart in CanvasJS"
+                },
+                data: [
+                    {
+                        // Change type to "doughnut", "line", "splineArea", etc.
+                        type: "column",
+                        dataPoints: [
+                            { label: "Entreprise",  y: 11 },
+                            { label: "Test Taker ", y:    55  },
+                            { label: "test Maker",  y: 4  }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+        }
+    </script>
 </head>
 <body>
 
@@ -71,7 +93,7 @@
                         <div class="user-avatar">
                             <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
                         </div>
-                        <div class="is-user-name"><span>John Doe</span></div>
+                        <div class="is-user-name"><span>     <a class="navbar-item" href="{{ path('app_logout')}}" >Se déconnecter</span></div>
                         <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
                     </a>
                     <div class="navbar-dropdown">
@@ -80,7 +102,7 @@
                             <span>My Profile</span>
                         </a>
                         <hr class="navbar-divider">
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="{{ path('app_logout')}}" >
                             <span class="icon"><i class="mdi mdi-logout"></i></span>
                             <span>Log Out</span>
                         </a>
@@ -110,7 +132,7 @@
             <ul class="menu-list">
                 <p class="menu-label">Gestion</p>
                 <li class="--set-active-tables-html">
-                    <a href=path{{'#'}}>
+                    <a href="{{ path('tous_users')}}">
                         <span class="icon"><i class="mdi mdi-table"></i></span>
                         <span class="menu-item-label">Users</span>
                     </a>
@@ -122,7 +144,7 @@
                     </a>
                 </li>
                 <li class="--set-active-tables-html">
-                    <a  href="{{ path('all_offres')}}">
+                    <a>
                         <span class="icon"><i class="mdi mdi-table"></i></span>
                         <span class="menu-item-label">Offres</span>
                     </a>
@@ -133,6 +155,12 @@
                         <span class="menu-item-label">Evenements</span>
                     </a>
                 </li>
+                     <li class="--set-active-tables-html">
+                    <a  href="{{ path('all_reservations')}}">
+                        <span class="icon"><i class="mdi mdi-table"></i></span>
+                        <span class="menu-item-label">Reservations</span>
+                    </a>
+                </li>
                 <li class="--set-active-tables-html">
                     <a  href="{{ path('all_abonnements')}}">
                         <span class="icon"><i class="mdi mdi-table"></i></span>
@@ -140,15 +168,33 @@
                     </a>
                 </li>
                 <li class="--set-active-tables-html">
-                    <a  href="{{ path('all_tests')}}">
+                    <a  href="{{ path('all_Typeabonnements')}}">
+                        <span class="icon"><i class="mdi mdi-table"></i></span>
+                        <span class="menu-item-label">Types d'abonnement</span>
+                    </a>
+                </li>
+                <li class="--set-active-tables-html">
+                    <a  href="{{ path('test1')}}">
                         <span class="icon"><i class="mdi mdi-table"></i></span>
                         <span class="menu-item-label">Tests</span>
                     </a>
                 </li>
                 <li class="--set-active-tables-html">
-                    <a  href="{{ path('all_questions')}}">
+                    <a href="{{ path('back_all_questions')}}">
                         <span class="icon"><i class="mdi mdi-table"></i></span>
                         <span class="menu-item-label">Questions</span>
+                    </a>
+                </li>
+                <li class="--set-active-tables-html">
+                    <a  href="{{ path('back_all_choix')}}">
+                        <span class="icon"><i class="mdi mdi-table"></i></span>
+                        <span class="menu-item-label">Choix</span>
+                    </a>
+                </li>
+                <li class="--set-active-tables-html">
+                    <a  href="#">
+                        <span class="icon"><i class="mdi mdi-table"></i></span>
+                        <span class="menu-item-label">Bibliotheque</span>
                     </a>
                 </li>
                 <p class="menu-label">Profil</p>
@@ -170,6 +216,7 @@
         </div>
     </aside>
     {% endblock %}
+
     {% block body %}
         <section class="is-title-bar">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
@@ -190,10 +237,10 @@
                         <div class="flex items-center justify-between">
                             <div class="widget-label">
                                 <h3>
-                                    Clients
+                                    Entreprises
                                 </h3>
                                 <h1>
-                                    512
+                                    {{ en }}
                                 </h1>
                             </div>
                             <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
@@ -205,10 +252,10 @@
                         <div class="flex items-center justify-between">
                             <div class="widget-label">
                                 <h3>
-                                    Sales
+                                    Employes
                                 </h3>
                                 <h1>
-                                    $7,770
+                                    {{ tt }}
                                 </h1>
                             </div>
                             <span class="icon widget-icon text-blue-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
@@ -221,10 +268,10 @@
                         <div class="flex items-center justify-between">
                             <div class="widget-label">
                                 <h3>
-                                    Performance
+                                    Test Maker
                                 </h3>
                                 <h1>
-                                    256%
+                                    {{ tm }}
                                 </h1>
                             </div>
                             <span class="icon widget-icon text-red-500"><i class="mdi mdi-finance mdi-48px"></i></span>
@@ -251,10 +298,13 @@
                                     <div></div>
                                 </div>
                                 <div class="chartjs-size-monitor-shrink">
-                                    <div></div>
+                                    <div>
+                                        <h1>dd</h1>
+                                        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+                                    </div>
                                 </div>
                             </div>
-                            <canvas id="big-line-chart" width="2992" height="1000" class="chartjs-render-monitor block" style="height: 400px; width: 1197px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -623,10 +673,7 @@
 
 <!-- Scripts below are for demo only -->
 {% block js %}
-    <script type="text/javascript" src="{{asset('back/js/main.min.js?v=1628755089081')}}"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    <script type="text/javascript" src="{{asset('back/js/chart.sample.min.js')}}"></script>
 
 
     <script>

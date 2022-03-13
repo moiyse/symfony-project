@@ -47,4 +47,25 @@ class BibliothequeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function findByNamePopular(string $search = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('bibliotheque')
+
+            ->where('bibliotheque.id LIKE :searchTerm')
+            
+           
+            
+
+            ->setParameter('searchTerm', '%'.$search.'%');
+
+
+        return $queryBuilder
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
 }

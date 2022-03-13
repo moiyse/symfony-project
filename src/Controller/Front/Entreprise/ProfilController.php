@@ -13,8 +13,14 @@ class ProfilController extends AbstractController
      */
     public function index(): Response
     {
+        if ($this->getUser()){
+            $role =$this->getUser()->getRoles()[0];
+        }
+        else{
+            $role="client";
+        }
         return $this->render('front/entreprise/profil/index.html.twig', [
-            'controller_name' => 'ProfilController',
+            'role' => $role,
         ]);
     }
 }

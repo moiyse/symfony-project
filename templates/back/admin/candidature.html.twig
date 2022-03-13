@@ -1,0 +1,101 @@
+{% extends 'backindex/index.html.twig' %}
+{%  block body %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Datatable - Search By Column</title>
+        <link rel="stylesheet" href="{{asset('back/css/datatable.css')}}">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    </head>
+    <div class="card has-table">
+        <header class="card-header">
+            <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+                Clients
+            <p>
+            <div class="row">
+
+
+                <label for="search-by-column"></label>
+                </p>
+            </div>
+
+            </p>
+            <a href=path{{'#'}} class="card-header-icon">
+                <span class="icon"><i class="mdi mdi-reload"></i></span>
+            </a>
+        </header>
+        <body>
+        <div class="container">
+
+            <div class="row justify-content-md-center">
+                <div class="col-8">
+
+                    <div class="row">
+
+
+                        <label for="search-by-column"></label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-content">
+                <table id="example" class="mdi mdi-reload" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>message</th>
+                        <th>etat_candidature</th>
+                        <th>Offre</th>
+                        <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for candidature in candidature %}
+                    <tr>
+                        <td>{{ candidature.id }}</td>
+                        <td>{{ candidature.message }}</td>
+                        <td>{{ candidature.etat_candidature }}</td>
+                        <td>{{ candidature.Offre }}</td>
+                        <td class="actions-cell">
+                            <div class="buttons right nowrap">
+                                 <span>
+
+                            <a href="{{ path('delete_condidature_back',{'id':candidature.id}) }}" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i> supprimer</a>
+                        </span>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                function searchByColumn(table) {
+                    var defaultSearch = 1 //Name
+                    $(document).on('change', '#select-column', function() {
+                        defaultSearch = this.value;
+                    });
+                    $(document).on('change', '#search-by-column', function() {
+                        table.search('').columns().search('').draw();
+                        table.column(defaultSearch).search(this.value).draw();
+                    });
+                }
+                var table = $('#example').DataTable();
+                searchByColumn(table);
+            } );
+        </script>
+        </body>
+    </div>
+    </html>
+
+{% endblock %}

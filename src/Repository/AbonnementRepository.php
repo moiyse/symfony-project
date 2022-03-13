@@ -47,4 +47,32 @@ class AbonnementRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function OrderByCout(){
+        $em=$this->getEntityManager();
+        $query=$em->createQuery('select s FROM App\Entity\Abonnement s ORDER BY s.cout');
+        return $query->getResult();
+    }
+    public function OrderByCoutDSC(){
+        $em=$this->getEntityManager();
+        $query=$em->createQuery('select s FROM App\Entity\Abonnement s ORDER BY s.cout DESC');
+        return $query->getResult();
+    }
+    public function findByNamePopular(string $search = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('a')
+
+            ->where('a.id LIKE :searchTerm')
+            ->orWhere('a.nom LIKE :searchTerm')
+            ->orWhere('a.description LIKE :searchTerm')
+            ->orWhere('a.cout LIKE :searchTerm')
+
+            ->setParameter('searchTerm', '%'.$search.'%');
+
+
+        return $queryBuilder
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

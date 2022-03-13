@@ -13,7 +13,7 @@
             <div class="row no-gutters slider-text align-items-end justify-content-start">
                 <div class="col-md-12 ftco-animate text-center mb-5 fadeInUp ftco-animated">
                     <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About</span></p>
-                    <h1 class="mb-3 bread">Browse Jobs</h1>
+                    <h1 class="mb-3 bread">Les questions</h1>
                 </div>
 
 
@@ -95,10 +95,10 @@
                                             {{number}}
 
                                         
-                                            {% if number <= 4 %}
+                                            {% if number <= 9 %}
                                             <button type="submit" class="btn btn-info"> Next    >> </button>
                                             {% else %}
-                                            <button type="submit" class="btn btn-info" style="margin-top : 20px" disabled>Next    >> (you have reached 10 questions)</button>
+                                            <button type="submit" class="btn btn-info" style="margin-top : 20px" disabled>Next    >> (vous avez fait 10 questions)</button>
                                             {% endif %}
                                             {{ form_end(form) }}
                                 
@@ -157,8 +157,7 @@
                                                     {% endif %}
                                                     <div style="width:100px;margin:100px auto 20px auto;color:black">{{ knp_pagination_render(list, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}</div>
                                                 
-                                                {% set note = 26598432 %}
-                                                {% set note = note + 1 %}
+                                               
                                                 
                                             
                                         </div>

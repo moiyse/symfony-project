@@ -28,57 +28,13 @@
 </head>
 <body>
 {# Role TestTaker #}
+
 {% block nav %}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container-fluid px-md-4	">
-        <a class="navbar-brand" href={{ path('front_entreprise_profil') }}><img src="{{ asset ('front/images/273611990_485088496513727_7369103203946488337_n.png') }}" style=height:60px;  alt="Example"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
+    {% if role is defined %}
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="{{ path('front_entreprise_profil')}}" class="nav-link">Mon Profil</a></li>
-                <li class="nav-item "><a  href="{{ path('tous_offres')}}"class="nav-link">Consulter les offres</a></li>
-                <li class="nav-item "><a  href="{{ path('front_entreprise_tousevenements')}}"class="nav-link">Consulter les evenements</a></li>
-                <li class="nav-item "><a  href="{{ path('front_test_taker_abonnement')}}"class="nav-link">Consulter les abonnements</a></li>
-                <li class="nav-item cta cta-colored"><a class="nav-link" >Se déconnecter</a></li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
-{% endblock %}
-
-{# Role testMaker #}
-{#
-{% block nav %}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container-fluid px-md-4	">
-        <a class="navbar-brand"><img src="{{ asset ('front/images/273611990_485088496513727_7369103203946488337_n.png') }}" style=height:90px;  alt="Example"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
-
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="{{ path('front_entreprise_profil')}}" class="nav-link">Mon Profil</a></li>
-                <li class="nav-item"><a href="{{ path('front_testmaker_test')}}" class="nav-link">creer test</a></li>
-                <li class="nav-item"><a href="{{ path('front_testmaker_mestests')}}" class="nav-link">mes tests</a></li>
-                <li class="nav-item"><a href="{{ path('front_testmaker_bibliotheque')}}" class="nav-link">Bibliotheque</a></li>
-                <li class="nav-item"><a href="{{ path('front_testmaker_candidature_accp')}}" class="nav-link">Candidatures</a></li>
-
-                <li class="nav-item cta cta-colored"><a class="nav-link" >Se déconnecter</a></li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
-{% endblock %}
-#}
-{# Role accueil #}
-{#
-{% block nav %}
+    {% endif %}
+    {# Role TESTTAKER #}
+    {% if role == "ROLE_TESTTAKER" %}
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid px-md-4	">
         <a class="navbar-brand"><img src="{{ asset ('front/images/273611990_485088496513727_7369103203946488337_n.png') }}" style=height:60px;  alt="Example"/></a>
@@ -88,23 +44,51 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="{{ path('front_entreprise_profil')}}" class="nav-link">Accueil</a></li>
+                         <li class="nav-item active"><a href="{{ path('modifier_profil')}}" class="nav-link">Mon Profil</a></li>
+                 
+                     <li class="nav-item "><a  href="{{ path('tous_les_offres')}}"class="nav-link">Consulter les offres</a></li>
+                    <li class="nav-item "><a  href="{{ path('front_entreprise_mesevenements')}}"class="nav-link">Consulter les evenements</a></li>
 
-                <li class="nav-item cta mr-md-1"><a class="nav-link">S'inscrire</a></li>
-                <li class="nav-item cta cta-colored"><a class="nav-link" >Se connecter</a></li>
+                <li class="nav-item "><a  href="{{ path('testtaker_tous_condidatures')}}"class="nav-link">Consulter les candidature</a></li>
+            
+                <li class="nav-item "><a  href="{{ path('front_test_taker_abonnement')}}"class="nav-link">Consulter les abonnements</a></li>
+               
+        <li class="nav-item cta cta-colored"><a href="{{ path('app_logout')}}" class="nav-link" >Se déconnecter</a></li>
+        
+               
 
             </ul>
         </div>
     </div>
 </nav>
-{% endblock %}
-#}
-{# Role Entreprise #}
-{#
-{% block nav %}
+    {% endif %}
+{# Role testMaker #}
+{% if role == "ROLE_TESTMAKER" %}
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid px-md-4	">
-        <a class="navbar-brand"><img src="{{ asset ('front/images/273611990_485088496513727_7369103203946488337_n.png') }}" style=height:90px;  alt="Example"/></a>
+        <a class="navbar-brand"><img src="{{ asset ('front/images/273611990_485088496513727_7369103203946488337_n.png') }}" style=height:60px;  alt="Example"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="{{ path('modifier_profil')}}" class="nav-link">Mon Profil</a></li>
+                <li class="nav-item"><a href="{{ path('all_tests')}}" class="nav-link">mes tests</a></li>
+                <li class="nav-item"><a href="{{ path('all_cand')}}" class="nav-link">Candidatures</a></li>
+
+                <li class="nav-item cta cta-colored"><a  href="{{ path('app_logout')}}" class="nav-link" >Se déconnecter</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endif %}
+{# Role Entreprise #}
+    {% if role== "ROLE_ENTREPRISE" %}
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid px-md-4	">
+        <a class="navbar-brand"><img src="{{ asset ('front/images/273611990_485088496513727_7369103203946488337_n.png') }}" style=height:60px;  alt="Example"/></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -112,20 +96,42 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="{{ path('front_entreprise_profil')}}" class="nav-link">Mon Profil</a></li>
-                <li class="nav-item"><a  href="{{ path('front_entreprise_creroffre')}}" class="nav-link">Creer offre</a></li>
-                <li class="nav-item"><a href="{{ path('front_entreprise_mesoffres')}}" class="nav-link">Mes Offres</a></li>
-                <li class="nav-item"><a  href="{{ path('front_entreprise_candidature')}}" class="nav-link">Les candidatures</a></li>
-                <li class="nav-item"><a  href="{{ path('front_entreprise_creerevenement')}}"class="nav-link">creer evenement</a></li>
-                <li class="nav-item"><a  href="{{ path('front_entreprise_mesevenements')}}"class="nav-link">Mes evenements</a></li>
-                <li class="nav-item cta cta-colored"><a class="nav-link" >Se déconnecter</a></li>
+                <li class="nav-item active"><a href="{{ path('modifier_profil')}}" class="nav-link">Mon Profil</a></li>
+                <li class="nav-item"><a href="{{ path('tous_offres')}}" class="nav-link">Mes Offres</a></li>
+                <li class="nav-item"><a  href="{{ path('tous_condidatures')}}" class="nav-link">Les candidatures</a></li>
+        <li class="nav-item"><a  href="{{ path('front_entreprise_test')}}" class="nav-link">Mes evenements</a></li>
+
+                <li class="nav-item cta cta-colored"><a href="{{ path('app_logout')}}"  class="nav-link" >Se déconnecter</a></li>
 
             </ul>
         </div>
     </div>
 </nav>
+    {% endif %}
+
+{% if role== "a" %}
+    {# Role accueil #}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container-fluid px-md-4	">
+            <a class="navbar-brand"><img src="{{ asset ('front/images/273611990_485088496513727_7369103203946488337_n.png') }}" style=height:60px;  alt="Example"/></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="{{ path('frontindex')}}" class="nav-link">Accueil</a></li>
+
+                    <li class="nav-item cta mr-md-1"><a  a href="{{ path('app_register')}}" class="nav-link">S'inscrire</a></li>
+                    <li class="nav-item cta cta-colored"><a  a href="{{ path('app_login')}}" class="nav-link" >Se connecter</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endif %}
 {% endblock %}
-#}
+
 <!-- END nav -->
 {% block r1 %}
 <div class="hero-wrap img" style="background-image:url('{{ asset('../templates/front/images/pg_1.jpg')}}')">
@@ -355,7 +361,7 @@
                             <li><a href="{{ path('front_entreprise_profil')}}" class="pb-1 d-block">Mon Profil</a></li>
 
                             <li><a href="{{ path('tous_offres')}}" class="pb-1 d-block">Offres</a></li>
-                            <li><a href="{{ path('front_entreprise_tousevenements')}}" class="pb-1 d-block">Evenements</a></li>
+                            <li><a href="{{ path('front_entreprise_mesevenements')}}" class="pb-1 d-block">Evenements</a></li>
                             <li><a href="{{ path('front_test_taker_abonnement')}}" class="pb-1 d-block">Abonnements</a></li>
                         </ul>
                     </div>
@@ -367,7 +373,7 @@
                             <li><a href="{{ path('front_entreprise_profil')}}" class="pb-1 d-block">Mon profil</a></li>
                             <li><a href="{{ path('front_entreprise_mesoffres')}}" class="pb-1 d-block">Mes offres</a></li>
                             <li><a href="{{ path('front_entreprise_creroffre')}}" class="pb-1 d-block">Ajouter offre</a></li>
-                            <li><a href="{{ path('front_entreprise_candidature')}}" class="pb-1 d-block">Liste des candidatures</a></li>
+                            <li><a href="#" class="pb-1 d-block">Liste des candidatures</a></li>
                             <li><a href="{{ path('front_entreprise_mesevenements')}}" class="pb-1 d-block">Evenements</a></li>
                         </ul>
                     </div>
@@ -378,7 +384,7 @@
                         <ul class="list-unstyled">
                             <li><a href="{{ path('front_entreprise_profil')}}" class="pb-1 d-block">Mon Profil</a></li>
                             <li><a href="{{ path('front_testmaker_candidature_accp')}}" class="pb-1 d-block">Candidatures</a></li>
-                            <li><a href="{{ path('front_testmaker_mestests')}}" class="pb-1 d-block">Tests à faire</a></li>
+                            <li><a href="{{ path('all_tests')}}" class="pb-1 d-block">Tests à faire</a></li>
                             <li><a href="{{ path('front_testmaker_bibliotheque')}}" class="pb-1 d-block">Bibliothèque</a></li>
 
                         </ul>

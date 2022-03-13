@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CandidatureRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,12 +27,43 @@ class Candidature
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $etat_candidature;
+    public $etat_candidature;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Assert\Length(
+     *      min = 20,
+     *      max = 200,
+
+     * )
      */
+
     private $message;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Offre::class, inversedBy="candidatures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Offre;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Test::class, mappedBy="candidature", cascade={"persist", "remove"})
+     */
+    private $test;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="candidatures")
+     */
+    private $User;
+
+
+
+    
 
     public function getId(): ?int
     {
@@ -69,6 +102,64 @@ class Candidature
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getOffre(): ?Offre
+    {
+        return $this->Offre;
+    }
+
+    public function setOffre(?Offre $Offre): self
+    {
+        $this->Offre = $Offre;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getTest(): ?Test
+    {
+        return $this->test;
+    }
+
+    public function setTest(?Test $test): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($test === null && $this->test !== null) {
+            $this->test->setCandidature(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($test !== null && $test->getCandidature() !== $this) {
+            $test->setCandidature($this);
+        }
+
+        $this->test = $test;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

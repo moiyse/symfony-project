@@ -19,6 +19,17 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
+    public function AfficherParIdEv($id)
+    {
+    
+        return $this->createQueryBuilder('r')
+                    ->select('r')
+                    ->where('r.eve_id = :id ')
+                    ->setParameter('id',$id)
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Reservation[] Returns an array of Reservation objects
     //  */

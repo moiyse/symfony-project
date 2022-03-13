@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Question;
+use App\Entity\Test;
+use App\Entity\Choix;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,10 +21,10 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    // /**
-    //  * @return Question[] Returns an array of Question objects
-    //  */
-    /*
+    /**
+     * @return Question[] Returns an array of Question objects
+     */
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('q')
@@ -32,9 +34,26 @@ class QuestionRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
+
+    public function findByNamePopular(string $search = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('question')
+
+            ->where('question.contenu LIKE :searchTerm')
+            
+            
+
+            ->setParameter('searchTerm', '%'.$search.'%');
+
+
+        return $queryBuilder
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Question
